@@ -5,7 +5,7 @@ packer {
   required_plugins {
     qemu = {
       version = ">= 1.0.1"
-      source  = "github.com/hashicorp/qemu"
+      source  = "github.com/cog-creators/qemu"
     }
   }
 }

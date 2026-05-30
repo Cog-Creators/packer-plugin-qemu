@@ -1,4 +1,4 @@
-module github.com/hashicorp/packer-plugin-qemu
+module github.com/cog-creators/packer-plugin-qemu
 
 go 1.23.0
 

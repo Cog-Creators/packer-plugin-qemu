@@ -11,7 +11,7 @@ packer {
   required_plugins {
     qemu = {
       version = "~> 1"
-      source  = "github.com/hashicorp/qemu"
+      source  = "github.com/cog-creators/qemu"
     }
   }
 }
@@ -19,12 +19,12 @@ packer {
 Alternatively, you can use `packer plugins install` to manage installation of this plugin.
 
 ```sh
-packer plugins install github.com/hashicorp/qemu
+packer plugins install github.com/cog-creators/qemu
 ```
 
 ### Components
 
 #### Builders
 
-- [qemu](/packer/integrations/hashicorp/qemu/latest/components/builder/qemu) - The QEMU builder is able to create [KVM](http://www.linux-kvm.org) virtual machine images.
+- [qemu](/packer/integrations/Cog-Creators/qemu/latest/components/builder/qemu) - The QEMU builder is able to create [KVM](http://www.linux-kvm.org) virtual machine images.
 

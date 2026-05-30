@@ -20,7 +20,7 @@ packer {
   required_plugins {
     qemu = {
       version = ">= 1.1.3"
-      source  = "github.com/hashicorp/qemu"
+      source  = "github.com/cog-creators/qemu"
     }
   }
 }
@@ -29,7 +29,7 @@ packer {
 
 #### Manual installation
 
-You can find pre-built binary releases of the plugin [here](https://github.com/hashicorp/packer-plugin-qemu/releases).
+You can find pre-built binary releases of the plugin [here](https://github.com/Cog-Creators/packer-plugin-qemu/releases).
 Once you have downloaded the latest archive corresponding to your target OS,
 uncompress it to retrieve the plugin binary file corresponding to your platform.
 To install the plugin, please follow the Packer documentation on

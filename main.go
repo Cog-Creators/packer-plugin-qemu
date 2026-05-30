@@ -9,8 +9,8 @@ import (
 
 	"github.com/hashicorp/packer-plugin-sdk/plugin"
 
-	"github.com/hashicorp/packer-plugin-qemu/builder/qemu"
-	"github.com/hashicorp/packer-plugin-qemu/version"
+	"github.com/cog-creators/packer-plugin-qemu/builder/qemu"
+	"github.com/cog-creators/packer-plugin-qemu/version"
 )
 
 func main() {

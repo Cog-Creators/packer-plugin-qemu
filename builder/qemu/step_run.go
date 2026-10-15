@@ -336,6 +336,7 @@ func (s *stepRun) applyUserOverrides(defaultArgs map[string]interface{}, config 
 		}
 		httpIp := state.Get("http_ip").(string)
 		httpPort := state.Get("http_port").(int)
+		vncPort := state.Get("vnc_port").(int)
 
 		type qemuArgsTemplateData struct {
 			HTTPIP      string
@@ -345,6 +346,7 @@ func (s *stepRun) applyUserOverrides(defaultArgs map[string]interface{}, config 
 			OutputDir   string
 			Name        string
 			SSHHostPort int
+			VNCPort     int
 		}
 
 		ictx := config.ctx
@@ -356,6 +358,7 @@ func (s *stepRun) applyUserOverrides(defaultArgs map[string]interface{}, config 
 			OutputDir:   config.OutputDir,
 			Name:        config.VMName,
 			SSHHostPort: commHostPort,
+			VNCPort:     vncPort,
 		}
 
 		// Interpolate each string in qemuargs

@@ -11,6 +11,7 @@ import (
 
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	"github.com/hashicorp/packer-plugin-sdk/net"
+	"github.com/hashicorp/packer-plugin-sdk/packerbuilderdata"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
 )
 
@@ -25,6 +26,7 @@ import (
 //
 //	vnc_port int - The port that VNC is configured to listen on.
 type stepConfigureVNC struct {
+	GeneratedData *packerbuilderdata.GeneratedData
 	l *net.Listener
 }
 
@@ -94,6 +96,7 @@ func (s *stepConfigureVNC) Run(ctx context.Context, state multistep.StateBag) mu
 	log.Printf("Found available VNC port: %d on IP: %s", vncPort, config.VNCBindAddress)
 	state.Put("vnc_port", vncPort)
 	state.Put("vnc_password", vncPassword)
+	s.GeneratedData.Put("VNCPort", vncPort)
 
 	return multistep.ActionContinue
 }

@@ -11,8 +11,8 @@ import (
 
 	"github.com/hashicorp/packer-plugin-sdk/multistep"
 	"github.com/hashicorp/packer-plugin-sdk/net"
-	"github.com/hashicorp/packer-plugin-sdk/packerbuilderdata"
 	packersdk "github.com/hashicorp/packer-plugin-sdk/packer"
+	"github.com/hashicorp/packer-plugin-sdk/packerbuilderdata"
 )
 
 // This step configures the VM to enable the VNC server.
@@ -27,7 +27,7 @@ import (
 //	vnc_port int - The port that VNC is configured to listen on.
 type stepConfigureVNC struct {
 	GeneratedData *packerbuilderdata.GeneratedData
-	l *net.Listener
+	l             *net.Listener
 }
 
 func VNCPassword(c *Config) (string, error) {

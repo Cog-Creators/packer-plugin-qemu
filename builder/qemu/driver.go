@@ -67,28 +67,33 @@ func (d *QemuDriver) Stop() error {
 
 	if d.vmCmd != nil {
 		p := d.vmCmd.Process
-		if err := terminateProcess(p); err != nil {
-			return err
-		}
 
 		done := make(chan error, 1)
 		go func() {
 			_, err := p.Wait()
+			if sysErr, ok := err.(*os.SyscallError); ok {
+				if sysErr.Err == syscall.ECHILD {
+					err = nil
+				}
+			}
 			done <- err
 		}()
+
+		if err := terminateProcess(p); err != nil {
+			return err
+		}
 
 		var errs *packersdk.MultiError
 		select {
 		case err := <-done:
 			if err != nil {
 				errs = packersdk.MultiErrorAppend(errs, err)
-				if err := p.Kill(); err != nil {
+				if err := p.Kill(); err != nil && err != os.ErrProcessDone {
 					errs = packersdk.MultiErrorAppend(errs, err)
 				}
 			}
-			return nil
 		case <-time.After(15 * time.Second):
-			if err := p.Kill(); err != nil {
+			if err := p.Kill(); err != nil && err != os.ErrProcessDone {
 				errs = packersdk.MultiErrorAppend(errs, err)
 			}
 			<-done

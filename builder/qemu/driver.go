@@ -79,7 +79,7 @@ func (d *QemuDriver) Stop() error {
 			done <- err
 		}()
 
-		if err := terminateProcess(p); err != nil {
+		if err := terminateProcess(p); err != nil && err != os.ErrProcessDone {
 			return err
 		}
 

@@ -5,7 +5,12 @@
 
 package qemu
 
-import "os"
+import (
+	"os"
+	"os/exec"
+)
+
+func setNewProcessGroup(cmd *exec.Cmd) {}
 
 func terminateProcess(p *os.Process) error {
 	return p.Signal(os.Interrupt)

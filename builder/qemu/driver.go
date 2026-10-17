@@ -144,6 +144,8 @@ func (d *QemuDriver) Qemu(qemuArgs ...string) error {
 	cmd := exec.Command(d.QemuPath, qemuArgs...)
 	cmd.Stdout = stdout_w
 	cmd.Stderr = stderr_w
+	// on Windows, we need a dedicated process group to be able to target it with Ctrl+C
+	setNewProcessGroup(cmd)
 
 	err := cmd.Start()
 	if err != nil {
